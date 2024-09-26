@@ -1,0 +1,4 @@
+Roger;100
+Siv;120
+Roger;100
+Siv;120
