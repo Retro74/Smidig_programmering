@@ -1,0 +1,15 @@
+Rosenvilde videregående skole;777;752
+Rud videregående skole;747;709
+Rælingen videregående skole;563;578
+Røyken videregående skole;735;707
+Sandvika videregående skole;918;895
+Seiersborg videregående skole;27;55
+Skedsmo videregående skole;1112;1211
+Ski videregående skole;700;705
+Stabekk videregående skole;395;396
+Strømmen videregående skole;661;654
+Sørumsand videregående skole;567;660
+Valler videregående skole;548;555
+Vestby videregående skole;599;602
+Wang;380;380
+Ås videregående skole;1250;1345
