@@ -1,14 +1,19 @@
-videregaandeskoler = []
-with open("Runde1/AkerhusVGS_22-23_og_23-24.txt", encoding='utf-8') as fil:
+nesoddensBefolkning =[]
+ant_Nesodden =0
+ant_menn_Nesodden =0
+ant_kvinner_Nesodden =0
+
+with open("Runde1/Nesodden_2024_Alder_Ant_Menn_Kvinner.txt", encoding='utf-8') as fil:
+    overskrift = fil.readline().split(";")
     for linje in fil:
         tmp = linje.split(";")
-        prosenttall = (int(tmp[2])- int(tmp[1]))/int(tmp[1])
-        videregaandeskoler.append([tmp[0], int(tmp[1]), int(tmp[2]),round(prosenttall*100,1)]  )
+        nesoddensBefolkning.append([tmp[0].strip(), int(tmp[1].strip()), int(tmp[2].strip())]  )
+        ant_menn_Nesodden +=int(tmp[1].strip())
+        ant_kvinner_Nesodden += int(tmp[2].strip()) 
 
-sortertListe = sorted(videregaandeskoler,key=lambda l:(l[3]))[::-1]
+ant_Nesodden = ant_menn_Nesodden + ant_kvinner_Nesodden
 
-#print(videregaandeskoler)
-print(f"Skolene emd størst øksning er:")
-for skole in sortertListe:
-#    print(f"{skole[0]}, med {skole[3]} % endring")
-    print(f"{skole[0]}, med {skole[3]} % {'økning' if skole[3]>=0 else 'nedgang'}")
+#print(nesoddensBefolkning)
+prosent_menn_nesodden = round(ant_menn_Nesodden/ant_Nesodden,2)*100
+prosent_kvinner_nesodden = round(ant_kvinner_Nesodden/ant_Nesodden,2)*100
+print(f"Det bor {ant_Nesodden} på Nesodden. Menn utgjør {prosent_menn_nesodden} %, kvinner utgjør {prosent_kvinner_nesodden} %.")
