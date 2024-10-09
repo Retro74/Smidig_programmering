@@ -17,3 +17,17 @@ ant_Nesodden = ant_menn_Nesodden + ant_kvinner_Nesodden
 prosent_menn_nesodden = round(ant_menn_Nesodden/ant_Nesodden,2)*100
 prosent_kvinner_nesodden = round(ant_kvinner_Nesodden/ant_Nesodden,2)*100
 print(f"Det bor {ant_Nesodden} på Nesodden. Menn utgjør {prosent_menn_nesodden} %, kvinner utgjør {prosent_kvinner_nesodden} %.")
+
+sum = 0
+teller = 0
+for rad in nesoddensBefolkning:
+    sum += rad[1]+ rad[2]
+    if (teller) % 10 == 9:
+        print("Aldersgruppen ", teller-9, "-", teller , "år :", sum)
+        sum = 0
+    teller+=1
+print("Aldersgruppen ", 100, "-", 110 , "år :", sum)
+
+    
+
+
