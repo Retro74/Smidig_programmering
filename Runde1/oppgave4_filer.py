@@ -23,10 +23,11 @@ teller = 0
 for rad in nesoddensBefolkning:
     sum += rad[1]+ rad[2]
     if (teller) % 10 == 9:
-        print("Aldersgruppen ", teller-9, "-", teller , "år :", sum)
+        print("Aldersgruppen", teller-9, "-", teller , "år :", sum)
+        #print(rad[0]) #Sjekker at det tar siste i hver gruppe, X9 år
         sum = 0
     teller+=1
-print("Aldersgruppen ", 100, "-", 110 , "år :", sum)
+print("Aldersgruppen", 100, "-", 110 , "år :", sum)
 
     
 
