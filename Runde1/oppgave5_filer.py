@@ -1,5 +1,3 @@
-
-
 nedboerNesooden = []
 with open("Runde1/Nedbør_Nesodden_2015-2024.txt", encoding='utf-8') as fil:
     overskrift = fil.readline().split(";")
