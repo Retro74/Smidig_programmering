@@ -17,5 +17,9 @@ df = pd.DataFrame(data)
 pd.set_option('display.max_rows', None)  # Ingen begrensning på antall rader
 pd.set_option('display.max_columns', None)  # Ingen begrensning på antall kolonner
 
+antall_rader, antall_kolonner = df.shape
+
+print(f"Antall rader: {antall_rader}")
+print(f"Antall kolonner: {antall_kolonner}")
 # Skriver ut hele DataFrame-en:
 print(df)
