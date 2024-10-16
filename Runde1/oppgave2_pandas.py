@@ -1,5 +1,6 @@
 import pandas
-innbyggere_byer_df = pandas.read_csv("Runde1/Innbyggertall_Byer.csv")
+filnavn = "Runde1/Innbyggertall_Byer.csv"
+innbyggere_byer_df = pandas.read_csv(filnavn)
 
 
 #ny_rad = {'Verdensdel': 'Europe', 'Land': 'Norway', 'By': 'Harstad', 'Innbyggertall': 25077}
@@ -32,3 +33,7 @@ while True:
 
 
 print(innbyggere_byer_df)
+
+if input("Save? (y=yes, n=no) ") == "y":
+    innbyggere_byer_df.to_csv(filnavn, index=False)    
+
