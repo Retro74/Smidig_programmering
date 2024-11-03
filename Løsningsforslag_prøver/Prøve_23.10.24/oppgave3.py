@@ -22,9 +22,9 @@ bukerÅrsmodell= int(input("Din maks-årsmodell: "))
 print(bil_salg_df[((bil_salg_df["Pris"]<= bukerPris) & (bil_salg_df["Årsmodell"]>=bukerÅrsmodell))])
 
 #f)
-gjennomsnittspris_bruktbiler = bil_salg_df[bil_salg_df["Tilstand"]=="brukt"]["Kilometerstand"].mean()
-#print(gjennomsnitt)
-print(bil_salg_df[(bil_salg_df["Kilometerstand"]< gjennomsnittspris_bruktbiler) & (bil_salg_df["Tilstand"]=="brukt")])
+gjennomsnittskm_bruktbiler = bil_salg_df[bil_salg_df["Tilstand"]=="brukt"]["Kilometerstand"].mean()
+print(gjennomsnittskm_bruktbiler)
+print(bil_salg_df[(bil_salg_df["Kilometerstand"]< gjennomsnittskm_bruktbiler) & (bil_salg_df["Tilstand"]=="brukt")])
 
 #g)
 #print(bil_salg_df[bil_salg_df["Tilstand"]=="ny"]["Tilstand"].count())
