@@ -11,7 +11,7 @@ print(f'\nHer er en liste over {brukervalg} biler:')
 print(bil_salg_df[bil_salg_df["Tilstand"]==brukervalg])
 
 #c) 
-print(f"Gjennomsnittsprisen på de brukte bilene er: {bil_salg_df[bil_salg_df["Tilstand"]=="brukt"]["Pris"].mean()} kroner")
+print(f"Gjennomsnittsprisen på de brukte bilene er: {bil_salg_df[bil_salg_df["Tilstand"]=="brukt"]["Pris"].mean():.0f} kroner")
 
 #d) 
 print(bil_salg_df.groupby("Bilmerke")["Bilmerke"].count())
@@ -22,9 +22,9 @@ bukerÅrsmodell= int(input("Din maks-årsmodell: "))
 print(bil_salg_df[((bil_salg_df["Pris"]<= bukerPris) & (bil_salg_df["Årsmodell"]>=bukerÅrsmodell))])
 
 #f)
-gjennomsnittskm_bruktbiler = bil_salg_df[bil_salg_df["Tilstand"]=="brukt"]["Kilometerstand"].mean()
-print(gjennomsnittskm_bruktbiler)
-print(bil_salg_df[(bil_salg_df["Kilometerstand"]< gjennomsnittskm_bruktbiler) & (bil_salg_df["Tilstand"]=="brukt")])
+gjennomsnitts_km_bruktbiler = bil_salg_df[bil_salg_df["Tilstand"]=="brukt"]["Kilometerstand"].mean()
+#print(gjennomsnitts_km_bruktbiler)
+print(bil_salg_df[(bil_salg_df["Kilometerstand"]< gjennomsnitts_km_bruktbiler) & (bil_salg_df["Tilstand"]=="brukt")])
 
 #g)
 #print(bil_salg_df[bil_salg_df["Tilstand"]=="ny"]["Tilstand"].count())
