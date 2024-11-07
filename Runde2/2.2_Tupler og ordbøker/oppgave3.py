@@ -52,8 +52,11 @@ while True:
     if valg in app_modes:
         print(f"Du valgte: {app_modes[valg]}")
     elif valg == "":
-        print("Du valge å avslutte")
+        print("Avslutter")
         break
+    else:
+        print("Feil valg. Prøv igjen")
+
     if valg == "a":
         sok_navn()
     elif valg == "b":
