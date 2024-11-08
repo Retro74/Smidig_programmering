@@ -60,7 +60,7 @@ while True:
     if valg == "a":
         sok_navn()
     elif valg == "b":
-        sok_navn_med()
+        sok_navn_start()
     elif valg == "c":
         sok_navn_med()
     elif valg == "d":
