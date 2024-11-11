@@ -12,7 +12,7 @@ with open(fullPath, encoding="utf8") as fil:
             tmp_linje[i] = re.sub(r'[^a-zA-Z0-9æøåÆØÅ\s]', '', tmp_linje[i])
         fileData.append(tmp_linje)
 fileData = list(chain.from_iterable(fileData))
-#print(fileData)
+print(len(fileData))
 
 ordliste = {}
 for ord in fileData:
