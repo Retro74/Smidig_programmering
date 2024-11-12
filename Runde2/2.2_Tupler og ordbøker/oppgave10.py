@@ -1,6 +1,6 @@
 from pathlib import Path
-import re
-from itertools import chain
+import re #Et bibliotek for Regular Expressions https://docs.python.org/3/library/re.html
+
 fileName = 'Miljøutfordringer er et av vår tids.txt' 
 filePath = Path(__file__).resolve().parent
 fullPath =f"{filePath}\\{fileName}"
@@ -9,7 +9,7 @@ with open(fullPath, encoding="utf8") as fil:
     #Leser inn alt og splitter det i ord med små bokstaver uten linjeskift 
     data_fil = fil.read().lower().strip().split(" ")
 
-#Gjennomløper alle ord og tar bort spesialtegn
+#Gjennomløper alle ord og tar bort spesialtegn, som bla. komma, punktum, sprøsmålsteng m.fl.
 for i in range(len(data_fil)):
     data_fil[i] = re.sub(r'[^a-zA-Z0-9æøåÆØÅ\s]', '', data_fil[i])
 
