@@ -1,10 +1,11 @@
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 from pathlib import Path
-imagesFolder = "images"
+#Bildene ligger i en egen mappe ved siden av pythonfilen
+imagesFolder = "\images"
 fileName = 'kart.jpg' 
 filePath = Path(__file__).resolve().parent
-fullPath =f"{filePath}\\{imagesFolder}\\{fileName}"
+fullPath =f"{filePath}{imagesFolder}\\{fileName}"
 # Last inn kartbildet
 
 temperaturdata = {
@@ -31,17 +32,20 @@ for (x, y), (by, temp, vaerikon) in temperaturdata.items():
     plt.text(x, y + 20, f"{by}: {temp}°C", color="black", fontsize=9, ha='center')
 
     # Legg til værikon som et lite bilde rett ved byen
-    imagePath= f"{filePath}\\{imagesFolder}\\{vaerikon}"
-    ikon_bilde = mpimg.imread(imagePath)
-    ikon_size = 40  # Juster ikonstørrelsen manuelt
-    x_offset = 40
-    plt.imshow(ikon_bilde, extent=(x - ikon_size+x_offset, x + ikon_size+x_offset, y - ikon_size, y + ikon_size))
+    imagePath= f"{filePath}{imagesFolder}\\{vaerikon}"
+    mpimg_imread_ikon_bilde = mpimg.imread(imagePath)
+    ikon_size = 40  # Setter ikonstørrelsen
+    ikon_x_offset = 40  #Flytter ikonet litt til høyre for byens koordinater (i x-retning)
+    plt.imshow(mpimg_imread_ikon_bilde, extent=(x - ikon_size + ikon_x_offset,
+                                   x + ikon_size + ikon_x_offset,
+                                   y - ikon_size, 
+                                   y + ikon_size))
 
 # Dette er en "walk-around". 
 # Ikke pent, men får plt til å vise hele kartet.
 # Et siste gjennomsiktige bilde legges til og 
 # plasseres over til slutt
-clearImage = f"{filePath}\\{imagesFolder}\\{"clear.png"}"
+clearImage = f"{filePath}{imagesFolder}\\{"clear.png"}"
 plt.imshow(mpimg.imread(clearImage), extent=[0, 800, 0, 1200])  # Juster extent for å passe kartstørrelsen
 
 # Skjul akser (valgfritt)

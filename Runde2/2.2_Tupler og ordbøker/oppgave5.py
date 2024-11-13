@@ -1,9 +1,9 @@
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 from pathlib import Path
-fileName = 'images/kart.jpg' 
+fileName = '/images/kart.jpg' 
 filePath = Path(__file__).resolve().parent
-fullPath =f"{filePath}\\{fileName}"
+fullPath =f"{filePath}{fileName}"
 # Last inn kartbildet
 
 temperaturdata = {
