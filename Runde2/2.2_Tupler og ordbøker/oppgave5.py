@@ -1,10 +1,13 @@
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 from pathlib import Path
-fileName = '/images/kart.jpg' 
-filePath = Path(__file__).resolve().parent
-fullPath =f"{filePath}{fileName}"
-# Last inn kartbildet
+
+imageFileName = 'kart.jpg'
+imageFolder = 'images'
+
+
+pyFilePath = Path(__file__).resolve().parent
+fullPath = pyFilePath.joinpath(imageFolder).joinpath(imageFileName)
 
 temperaturdata = {
     (245, 270): ("Oslo", 17),       # Oslo

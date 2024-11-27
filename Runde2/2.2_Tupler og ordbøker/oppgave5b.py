@@ -2,10 +2,10 @@ import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 from pathlib import Path
 #Bildene ligger i en egen mappe ved siden av pythonfilen
-imagesFolder = "\images"
-fileName = 'kart.jpg' 
+imagesFolder = "images"
+imageFileName = 'kart.jpg' 
 filePath = Path(__file__).resolve().parent
-fullPath =f"{filePath}{imagesFolder}\\{fileName}"
+fullImagePath =filePath.joinpath(imagesFolder).joinpath(imageFileName)
 # Last inn kartbildet
 
 temperaturdata = {
@@ -18,7 +18,7 @@ temperaturdata = {
 }
 
 # Plott kartbildet som bakgrunn
-plt.imshow(mpimg.imread(fullPath), extent=[0, 800, 0, 1200])  # Juster extent for å passe kartstørrelsen
+plt.imshow(mpimg.imread(fullImagePath), extent=[0, 800, 0, 1200])  # Juster extent for å passe kartstørrelsen
 farger = ['#3f00bf','#0000ff', '#7f007f', '#ff0000', '#bf003f']
 
 # Legg til bynavn, temperaturer og prikk for hver by
@@ -32,7 +32,7 @@ for (x, y), (by, temp, vaerikon) in temperaturdata.items():
     plt.text(x, y + 20, f"{by}: {temp}°C", color="black", fontsize=9, ha='center')
 
     # Legg til værikon som et lite bilde rett ved byen
-    imagePath= f"{filePath}{imagesFolder}\\{vaerikon}"
+    imagePath= filePath.joinpath(imagesFolder).joinpath(vaerikon)
     mpimg_imread_ikon_bilde = mpimg.imread(imagePath)
     ikon_size = 40  # Setter ikonstørrelsen
     ikon_x_offset = 40  #Flytter ikonet litt til høyre for byens koordinater (i x-retning)
@@ -45,7 +45,7 @@ for (x, y), (by, temp, vaerikon) in temperaturdata.items():
 # Ikke pent, men får plt til å vise hele kartet.
 # Et siste gjennomsiktige bilde legges til og 
 # plasseres over til slutt
-clearImage = f"{filePath}{imagesFolder}\\{"clear.png"}"
+clearImage = filePath.joinpath(imagesFolder).joinpath("clear.png")
 plt.imshow(mpimg.imread(clearImage), extent=[0, 800, 0, 1200])  # Juster extent for å passe kartstørrelsen
 
 # Skjul akser (valgfritt)
