@@ -119,9 +119,12 @@ def valider():
     telefon = entry_telefon.get().strip()
     kjonn = var_kjonn.get().strip()
     email = entry_email.get().strip()
+    passord1 = entry_password1.get()
+    passord2 = entry_password2.get()
+    
     feil = []
 
-    # Valider navn
+    # Valider navn, og adresse
     if not fornavn:
         feil.append("Fornavn er obligatorisk!")
     if not etternavn:
@@ -133,7 +136,8 @@ def valider():
 
     if not postnummer in dict_postnrpostSted:
         feil.append("Ugyldig postnummer!")
-    
+
+    # Sjekk om f.dato er ok    
     try:
         # Forsøk å konvertere strengen til en dato
         date_string = f_dato + "." + f_mnd + "." + f_aar
@@ -154,6 +158,17 @@ def valider():
     # Sjekk at kjønn er valgt
     if kjonn=="":
         feil.append("Kjønn er ikke valgt!")
+    
+    # Sjekk passordet som satt
+    if len(passord1.strip())==0 :
+        feil.append("Passord er ikke satt.")
+    
+    if passord1 != passord2:
+        feil.append("Passordene er ulike.")
+
+    password_regex = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$'
+    if not re.match(password_regex, passord1):
+        feil.append("Passordet imøtekommer ikke nødvendig kompleksitet\nminst 6 tegn, inneholde store, små bokstaver og tall")
 
     # Oppdater resultatet
     if feil:
