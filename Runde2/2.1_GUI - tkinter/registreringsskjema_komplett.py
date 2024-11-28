@@ -5,7 +5,7 @@ from datetime import datetime
 import re  # For å validere e-postformat
 from pathlib import Path
 import json
-debugmodus = True
+debugmode = True
 
 savefile = "brukerdata.json"
 fileName_icon = 'form.ico'
@@ -31,7 +31,7 @@ dict_postnrpostSted=les_postnummer.get_list_postnummer_poststed()
 list_entryFag_spinKarakter_btnSlett = []
 
 def add_placeholder(entry, placeholder_text):
-    if not debugmodus:
+    if not debugmode:
         # Setter initial placeholder-tekst
         entry.insert(0, placeholder_text)
         entry.config(foreground="grey")
@@ -203,7 +203,7 @@ def valider():
         }
         #print(dict_save)
 
-        with open(pyFilePath.joinpath(savefile), "a", encoding="utf8") as json_file:
+        with open(pyFilePath.joinpath(savefile), "w", encoding="utf8") as json_file:
             json.dump(dict_save, json_file, indent=4)
 
         lbl_resultat.config(
@@ -410,7 +410,7 @@ row_count+=1
 lbl_resultat = Label(root, text="", font=("Arial", 6))
 lbl_resultat.grid(row=row_count, column=0, columnspan=2, pady=10)
 
-if debugmodus:
+if debugmode:
     print("set debug values")
     entry_fornavn.insert(0,"John")
     entry_etternavn.insert(0,"Doe")
@@ -421,7 +421,7 @@ if debugmodus:
     cmb_fodselsmnd.set(2)
     cmb_fodselsaar.set(1977)
     entry_telefon.insert(0,"12345678")
-    entry_email.insert(0,"myname@server.com")
+    entry_email.insert(0,"jhon.doe@server.com")
     entry_password1.insert(0,"Abc123.")
     entry_password2.insert(0,"Abc123.")
 
