@@ -4,6 +4,10 @@ import les_postnummer
 from datetime import datetime
 import re  # For å validere e-postformat
 from pathlib import Path
+import json
+debugmodus = True
+
+savefile = "brukerdata.json"
 fileName_icon = 'form.ico'
 fileName_eye = 'eye2.png'
 fileName_ceye = 'ceye2.png'
@@ -27,25 +31,26 @@ dict_postnrpostSted=les_postnummer.get_list_postnummer_poststed()
 list_entryFag_spinKarakter_btnSlett = []
 
 def add_placeholder(entry, placeholder_text):
-    # Setter initial placeholder-tekst
-    entry.insert(0, placeholder_text)
-    entry.config(foreground="grey")
+    if not debugmodus:
+        # Setter initial placeholder-tekst
+        entry.insert(0, placeholder_text)
+        entry.config(foreground="grey")
 
-    # Fjerner placeholder når brukeren klikker
-    def on_focus_in(event):
-        if event.widget.get() == placeholder_text:
-            event.widget.delete(0, "end")
-            event.widget.config(foreground="black")
-    
-    # Legger til placeholder hvis feltet er tomt når brukeren forlater
-    def on_focus_out(event):
-        if event.widget.get() == "":
-            event.widget.insert(0, placeholder_text)
-            event.widget.config(foreground="grey")
+        # Fjerner placeholder når brukeren klikker
+        def on_focus_in(event):
+            if event.widget.get() == placeholder_text:
+                event.widget.delete(0, "end")
+                event.widget.config(foreground="black")
+        
+        # Legger til placeholder hvis feltet er tomt når brukeren forlater
+        def on_focus_out(event):
+            if event.widget.get() == "":
+                event.widget.insert(0, placeholder_text)
+                event.widget.config(foreground="grey")
 
-    # Binder hendelsene til den aktuelle widgeten (Entry)
-    entry.bind("<FocusIn>", on_focus_in)
-    entry.bind("<FocusOut>", on_focus_out)
+        # Binder hendelsene til den aktuelle widgeten (Entry)
+        entry.bind("<FocusIn>", on_focus_in)
+        entry.bind("<FocusOut>", on_focus_out)
 
 
 def slett_fag(event):
@@ -182,6 +187,25 @@ def valider():
         for fag in list_entryFag_spinKarakter_btnSlett:
             if fag["entry_fag"].get().strip() != "":
                 skole_fag_karakterer += f"{fag['entry_fag'].get().strip()}, {fag['spB_karakter'].get().strip()}\n" 
+        dict_save = {
+            "Fornavn": fornavn,
+            "Etternavn": etternavn,
+            "Gatenavn": gatenavn,
+            "Husnummer": husnr,
+            "Postadr": postnummer,
+            "Foedselsdato": date_string,
+            "Telefon": telefon,
+            "Kjoenn": kjonn,
+            "E-post": email,
+            "Foererkortklasser": forerkortklasser,
+            "Skolefag": skole_fag_karakterer,
+            "Passord": passord1
+        }
+        #print(dict_save)
+
+        with open(pyFilePath.joinpath(savefile), "a", encoding="utf8") as json_file:
+            json.dump(dict_save, json_file, indent=4)
+
         lbl_resultat.config(
             text=f"Registrering fullført!"
             f"\nFornavn: {fornavn}"
@@ -196,6 +220,7 @@ def valider():
             f"\nFørerkortklasser: {forerkortklasser}"
             f"\nSkolefag: {skole_fag_karakterer}",
             foreground="green")
+        
 
 
 row_count =0
@@ -375,7 +400,6 @@ btn_password_reveal2.bind("<ButtonPress>", btn_password_reveal_press)
 btn_password_reveal2.bind("<ButtonRelease>", btn_password_reveal_release)
 
 
-
 # Knapp for validering
 row_count+=1
 btn_submit = Button(root, text="Registrer", command=valider, width="20")
@@ -385,6 +409,21 @@ btn_submit.grid(row=row_count, column=0, columnspan=2, pady=10)
 row_count+=1
 lbl_resultat = Label(root, text="", font=("Arial", 6))
 lbl_resultat.grid(row=row_count, column=0, columnspan=2, pady=10)
+
+if debugmodus:
+    print("set debug values")
+    entry_fornavn.insert(0,"John")
+    entry_etternavn.insert(0,"Doe")
+    entry_gatenavn.insert(0,"Gateveien")
+    entry_husnr.insert(0,"77")
+    entry_postNummer.insert(0,"1158")
+    cmb_fodselsdato.set(11)
+    cmb_fodselsmnd.set(2)
+    cmb_fodselsaar.set(1977)
+    entry_telefon.insert(0,"12345678")
+    entry_email.insert(0,"myname@server.com")
+    entry_password1.insert(0,"Abc123.")
+    entry_password2.insert(0,"Abc123.")
 
 # Start hovedløkken
 root.mainloop()
