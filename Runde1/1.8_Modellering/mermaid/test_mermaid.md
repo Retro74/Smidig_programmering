@@ -1,26 +1,34 @@
 ```mermaid
 classDiagram
     class Spilleliste {
-        - String navn
-        - List<Sang> sanger
-        - boolean offentlig
-        - String beskrivelse
-        - int antallSanger()
-        - int totalSpilletid()
+        - string navn
+        - list sanger
+        - bool offentlig
+        - string beskrivelse
+        - int aktivSangIndex
+        - bool gjenta
+        ---
+        + int antallSanger()
+        + int totalSpilletid()
         + leggTilSang(Sang sang)
         + fjernSang(Sang sang)
-        + delSpilleliste(String bruker)
-        + sorterSanger(String kriterium)
+        + delSpilleliste(string bruker)
+        + sorterSanger(string kriterium)
+        + spillSang(int indeks)
+        + spillNesteSang()
+        + stoppSang()
+        + oppdaterAvspilling()
     }
-    
+
     class Sang {
-        - String tittel
-        - String artist
+        - string tittel
+        - string artist
         - int spilletid // i sekunder
-        - String album
-        - String filSti
+        - string album
+        - string filSti
+        ---
         + getDetaljer()
+        + spill()
     }
 
     Spilleliste "1" --> "*" Sang : inneholder
-
