@@ -8,7 +8,7 @@ print(f"\na) Leser inn data\n")
 fileName = 'BeregnedeSkatterOgAvgifterPrKommuneViken2023.csv'
 pyFilePath = Path(__file__).resolve().parent
 fullFilePath = pyFilePath.joinpath(fileName)
-Akershus_kommuner_skatt = {}
+dict_Viken_kommuner_skatt = {}
 
 with open(fullFilePath, encoding="utf8") as fil:
     overskrift = fil.readline().strip().split(";")
@@ -16,13 +16,13 @@ with open(fullFilePath, encoding="utf8") as fil:
         temp_kommune = linje.strip().split(";")
         temp_kommune[1] = int(temp_kommune[1].replace(" ", "")) 
         temp_kommune[2] = int(temp_kommune[2].replace(" ", "")) 
-        Akershus_kommuner_skatt[temp_kommune[0]]=temp_kommune[1:]
-print(Akershus_kommuner_skatt)
+        dict_Viken_kommuner_skatt[temp_kommune[0]]=temp_kommune[1:]
+print(dict_Viken_kommuner_skatt)
 
 print(f"\ne) Legger til felt i data for gjennomsnitt\n")
 
-for kommune, verdier in Akershus_kommuner_skatt.items():
-    Akershus_kommuner_skatt[kommune].append(Akershus_kommuner_skatt[kommune][1]/Akershus_kommuner_skatt[kommune][0])
+for kommune, verdier in dict_Viken_kommuner_skatt.items():
+    dict_Viken_kommuner_skatt[kommune].append(dict_Viken_kommuner_skatt[kommune][1]/dict_Viken_kommuner_skatt[kommune][0])
 
 def resulat_utskrift(kommune, antall, skatt, gjennomsnitt):
     tmp_resultat_txt = f"Kommune: {kommune}\n"
@@ -37,7 +37,7 @@ def sok_kommune_data():
     if len(soketerm) > 0:
         if soketerm[0]==soketerm[-1]=="*":
             soketerm=soketerm[1:-1]
-            for kommune, verdi in Akershus_kommuner_skatt.items():
+            for kommune, verdi in dict_Viken_kommuner_skatt.items():
                 antall, skatt, gjennomsnitt = verdi
                 if soketerm in kommune:
                     resultat_txt += resulat_utskrift(kommune, antall, skatt, gjennomsnitt)
@@ -45,7 +45,7 @@ def sok_kommune_data():
         if soketerm[-1]=="*":
             #    Nes*
             soketerm=soketerm[0:-1]
-            for kommune, verdi in Akershus_kommuner_skatt.items():
+            for kommune, verdi in dict_Viken_kommuner_skatt.items():
                 antall, skatt, gjennomsnitt = verdi
                 if len(soketerm)<= len(kommune):
                     if kommune[0:len(soketerm)]== soketerm:
@@ -54,21 +54,21 @@ def sok_kommune_data():
         elif soketerm[0]=="*":
             #    *er
             soketerm = soketerm[1:]
-            for kommune, verdi in Akershus_kommuner_skatt.items():
+            for kommune, verdi in dict_Viken_kommuner_skatt.items():
                 antall, skatt, gjennomsnitt = verdi
                 if len(soketerm)<= len(kommune):
                     if kommune[-(len(soketerm)):]== soketerm:
                         resultat_txt += resulat_utskrift(kommune, antall, skatt, gjennomsnitt)
      
         else:
-            for kommune, verdi in Akershus_kommuner_skatt.items():
+            for kommune, verdi in dict_Viken_kommuner_skatt.items():
                 antall, skatt, gjennomsnitt = verdi
                 if kommune== soketerm:
                     resultat_txt += resulat_utskrift(kommune, antall, skatt, gjennomsnitt)
 
 
     lbl_resultat.config(text=f"{resultat_txt}")
-print(Akershus_kommuner_skatt)
+print(dict_Viken_kommuner_skatt)
 root = Tk()
 root.title("Søk etter kommune")
 root.geometry("400x800")

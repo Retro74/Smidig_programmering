@@ -9,7 +9,7 @@ fileName_2023 = 'BeregnedeSkatterOgAvgifterPrKommuneFollo2023.csv'
 
 pyFilePath = Path(__file__).resolve().parent
 fullFilePath_2023 = pyFilePath.joinpath(fileName_2023)
-Follo_kommuner_skatt_2023 = {}
+dict_Follo_kommuner_skatt_2023 = {}
 
 with open(fullFilePath_2023, encoding="utf8") as fil:
     overskrift = fil.readline().strip().split(";")
@@ -17,14 +17,14 @@ with open(fullFilePath_2023, encoding="utf8") as fil:
         temp_kommune = linje.strip().split(";")
         temp_kommune[1] = int(temp_kommune[1].replace(" ", "")) 
         temp_kommune[2] = int(temp_kommune[2].replace(" ", "")) 
-        Follo_kommuner_skatt_2023[temp_kommune[0]]=temp_kommune[1:]
+        dict_Follo_kommuner_skatt_2023[temp_kommune[0]]=temp_kommune[1:]
 
 #print(f"\ne) Legger til felt i data for gjennomsnitt\n")
 
 def vis_diagram_pie():
     kommuner_x =[]
     skatter_y = []
-    for kommune, verdier in Follo_kommuner_skatt_2023.items():
+    for kommune, verdier in dict_Follo_kommuner_skatt_2023.items():
         kommuner_x.append(kommune)
         skatter_y.append(verdier[1])
     plt.pie(skatter_y, labels=kommuner_x, autopct='%1.0f%%')
@@ -35,7 +35,7 @@ def vis_diagram_pie():
 def vis_diagram_bar():
     kommuner_x =[]
     skatter_y = []
-    for kommune, verdier in Follo_kommuner_skatt_2023.items():
+    for kommune, verdier in dict_Follo_kommuner_skatt_2023.items():
         kommuner_x.append(kommune)
         skatter_y.append(verdier[1]/1000000)
     plt.bar(kommuner_x, skatter_y)
@@ -47,7 +47,7 @@ def vis_diagram_bar():
 def vis_diagram_barh():
     kommuner_x =[]
     skatter_y = []
-    for kommune, verdier in Follo_kommuner_skatt_2023.items():
+    for kommune, verdier in dict_Follo_kommuner_skatt_2023.items():
         kommuner_x.append(kommune)
         skatter_y.append(verdier[1]/1000000)
     plt.barh(kommuner_x, skatter_y)
