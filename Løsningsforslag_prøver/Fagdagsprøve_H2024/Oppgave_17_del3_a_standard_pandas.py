@@ -3,21 +3,20 @@ import matplotlib.pyplot as plt
 from tkinter import *
 import pandas as pd
 
-#a)
+#a) ## Denne delen av løsningsfoslaget leser filen inn i dataframe med pandas
 #print(f"\na) Leser inn data\n")
 
 fileName_Follokommuner_2023 = 'BeregnedeSkatterOgAvgifterPrKommuneFollo2023.csv'
 
 pyFilePath = Path(__file__).resolve().parent
 fullFilePath_Follokommuner_2023 = pyFilePath.joinpath(fileName_Follokommuner_2023)
-#dict_Follo_kommuner_skatt_2023 = {}
 df = pd.read_csv(fullFilePath_Follokommuner_2023, delimiter=";", encoding="utf8")
 
-#Fjerner mellomrom i overskriftene
+#Fjerner mellomrom på starten og slutten i overskriftene
 df.columns = df.columns.str.strip()
+#Fjerner mellomrom i tallverier og gjør dem til tall
 df["Skattepliktige"] = df["Skattepliktige"].str.replace(" ", "").astype(int)
 df["Beregnede skatter og avgifter"] = df["Beregnede skatter og avgifter"].str.replace(" ", "").astype(int)
-
 
 
 def vis_diagram_pie():
@@ -28,18 +27,17 @@ def vis_diagram_pie():
 
 def vis_diagram_bar():
     plt.bar(df["Kommune"], df["Beregnede skatter og avgifter"])
-    plt.title("Inntekt pr kommune")
+    plt.title("Skatte og avgiftsintekter for kommunene i Follo")
     plt.ylabel("i mill kr kr")
     plt.xlabel("Kommuner i Follo")
     plt.show()
 
 def vis_diagram_barh():
     plt.barh(df["Kommune"], df["Beregnede skatter og avgifter"])
-    plt.title("Inntekt pr kommune")
+    plt.title("Skatte og avgiftsintekter for kommunene i Follo")
     plt.xlabel("i mill kr kr")
     plt.ylabel("Kommuner i Follo")
     plt.show()
-
 
 #GUI
 root = Tk()
