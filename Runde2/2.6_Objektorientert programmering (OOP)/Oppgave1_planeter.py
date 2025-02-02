@@ -33,6 +33,7 @@ class Planet:
 #jupiter = Planet("Jupiter", 778.5, 69911, 4)
 #print("TypeMars sitt volum er: ", mars.volum(), "km^3")
 
+#f)
 planeter = [
     ["Merkur", 57.9, 2439.7, 0],
     ["Venus", 108.2, 6051.8, 0],
@@ -49,9 +50,23 @@ for planet in planeter:
     solsystemet[planet[0]]=Planet(planet[0],planet[1], planet[2], planet[3])
 
 #print(solsystemet)
+#g)
 while True:
     finn_planet = input("Hviklen planet vil du se informasjon om? (q=quit) ")
     if finn_planet == "q":
         break
     elif finn_planet in solsystemet:
         print(solsystemet[finn_planet])
+
+
+##Oppgave h)
+sortert_etter_storrelse = dict(sorted(solsystemet.items(), key=lambda item: item[1].radius))
+for planet in sortert_etter_storrelse.values():
+    print(planet)
+
+
+#i)
+sok_antall_ringer = int(input("Hvor mange ringer vil du minimum ha for listen? "))
+for planet in solsystemet.values():
+    if planet.antallRinger>=sok_antall_ringer:
+        print(planet)
