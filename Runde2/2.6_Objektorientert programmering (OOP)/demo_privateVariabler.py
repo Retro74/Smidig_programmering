@@ -5,9 +5,6 @@ class Land:
         self.befolkning = befolkning
     def visInfo(self):
         print(self.navn, self.__hovedstad, self.befolkning)
-        
-
-
 
 norge = Land("Norge", "Oslo", 5000000)
 norge.__hovedstad="Bergen"
