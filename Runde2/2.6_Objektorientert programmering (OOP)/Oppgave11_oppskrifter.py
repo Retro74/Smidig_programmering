@@ -21,10 +21,10 @@ class Oppskrift:
         if navn != "" and mengde > 0 and enhet != "":
             self.__ingredienser.append([navn, mengde, enhet])
     
-    def slett_ingrediens(self, navn):
-        for i in range(len(self.__ingredienser)):
-            if self.__ingredienser[0]== navn:
-                self.__ingredienser.remove(i)
+    def slett_ingrediens(self, slettIngrediens_navn):
+        for i in range(len(self.__ingredienser)-1,0,-1):
+            if self.__ingredienser[i][0]== slettIngrediens_navn:
+                self.__ingredienser.pop(i)
 
 class VegetarOppskrift(Oppskrift):
     def __init__(self, navn, ingredienser, tid, fremgangsmaate):
@@ -48,8 +48,10 @@ spagettiBolognese = Oppskrift("Spagetti Bolognese", [["Løk", 1/2, "stk"],
                                                      ["Hvitløk", 1/2, "fed"],
                                                      ["Tomatsaus", 1.5, "dl"]], 30, 
                                                      "Kok pasta i 10 minutter. Stek kjøttdeig og løk. Hell i tomatsaus. La kokse i 15 minutter. Server varmt, gjerne med revet parmesan på toppen.")
+spagettiBolognese.legg_til_ingrediens("Basilikum", 3 , "blader")
+spagettiBolognese.slett_ingrediens("Hvitløk")
 
-#spagettiBolognese.vis_oppskrift(2)
+spagettiBolognese.vis_oppskrift(2)
 veganskSpagettiBolognese = VegetarOppskrift("Vegansk Spagetti Bolognese", [["Løk", 1/2, "stk"], 
                                                      ["Soyabasert kjøttdeigserstatning", 80, "g"], 
                                                      ["Pasta/Spagetti", 100, "g"],
@@ -66,4 +68,4 @@ tiramisu = DessertOppskrift("Tiramisu", [["Eggeplomme", 0.5, "stk"],
                                          ["Konjakk", 1, "ts"]], 35, 
                                          "Bland eggeplommer med sukker og pisk luftig, tilsett mascarpone og rør glatt.\n2. Pisk eggehvitene stive med en klype salt. Vend eggehvitene inn i ostekremen med en slikkepott.\n3. Legg et lag med krem i bunnen av en serveringsskål. Dypp fingerkjeksene raskt i kaffe, blandet med konjakk (pass på så dem ikke blir for bløte) og legg dem på kremen.\n4. Legg et nytt lag med krem, kjeks oppå og avslutt med et lag krem. Dryss revet sjokolade på toppen og avkjøl ca. 1 time før servering.", 415)
 
-tiramisu.vis_oppskrift(4)
+#tiramisu.vis_oppskrift(4)
