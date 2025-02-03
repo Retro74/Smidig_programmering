@@ -4,8 +4,10 @@ classDiagram
         - navn: str
         - ingredienser: list
         - tid: int
+        - fremgangsmaate: str
         + vis_oppskrift(): void
-        + legg_til_ingredient(ingredient: str): void
+        + legg_til_ingrediens(ingrediens:str, mengde:float, enhet:str): void
+        + slett_ingrediens(ingrediens:str)
     }
     class VegetarOppskrift {
         - veganvennlig: bool

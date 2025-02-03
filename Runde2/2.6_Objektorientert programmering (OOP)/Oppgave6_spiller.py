@@ -1,14 +1,16 @@
 class Spiller:
-    def __init__(self, navn, level, poeng):
+    def __init__(self, navn:str, level:int, poeng:int):
         self.navn = navn
         self.level  = level 
         self.poeng = poeng
+
     def oppgrader_level(self):
         self.level += 1
         self.poeng += 500
 
     def gi_bonus(self, bonus):
         self.poeng += bonus
+
     def __str__(self):
         return ", ".join(f"{planetegnskap}={planetegnskap_verdi}" for planetegnskap, planetegnskap_verdi in vars(self).items())
  
