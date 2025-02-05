@@ -39,17 +39,17 @@ class VannPokemon(Pokemon):
 
 
 # Opprett Pokémon
-charizard  = IldPokemon("Charizard")
-blastoise   = VannPokemon("Blastoise")
+pokemon1  = IldPokemon("Charizard")
+pokemon2   = VannPokemon("Blastoise")
 
 # Kamp!
-while charizard.er_vaaken() and blastoise.er_vaaken():
-    blastoise.motta_skade(charizard.bruk_spesial())
-    charizard.motta_skade(blastoise.bruk_spesial())
+while pokemon1.er_vaaken() and pokemon2.er_vaaken():
+    pokemon2.motta_skade(pokemon1.bruk_spesial())
+    pokemon1.motta_skade(pokemon2.bruk_spesial())
 
-if not charizard.er_vaaken() and not blastoise.er_vaaken():
+if not pokemon1.er_vaaken() and not pokemon2.er_vaaken():
     print("Begge har besvimt! Ingen vinner")
-elif charizard.er_vaaken(): 
-    print("Blastiose har besvimt! Charizard vinner")
+elif pokemon1.er_vaaken(): 
+    print(f"{pokemon2.navn} har besvimt! {pokemon1.navn} vinner")
 else:
-    print("Charizard har besvimt! Blastiose vinner")
+    print(f"{pokemon1.navn} har besvimt! {pokemon2.navn} vinner")
