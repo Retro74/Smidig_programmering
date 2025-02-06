@@ -6,8 +6,8 @@ class Pokemon:
         self._helse = 100
 
     def motta_skade(self, skade: int):
-        self._helse = max(0, self._helse - skade) 
-        print(f"{self.navn} mistet {skade} HP! Helse nå: {self._helse}")
+        self._helse = max(0, self._helse - skade)
+        print(f"{self.navn} mistet {skade} HP! Helsen er nå: {self._helse}")
 
     def er_vaaken(self):
         return self._helse > 0
