@@ -1,34 +1,34 @@
 from random import randint
 
 class Pokemon:
-    def __init__(self, navn: str):
+    def __init__(self, navn: str)->None:
         self.navn = navn
         self._helse = 100
 
-    def motta_skade(self, skade: int):
+    def motta_skade(self, skade: int)->None:
         self._helse = max(0, self._helse - skade)
         print(f"{self.navn} mistet {skade} HP! Helsen er nå: {self._helse}")
 
-    def er_vaaken(self):
+    def er_vaaken(self)-> bool:
         return self._helse > 0
 
 class IldPokemon(Pokemon):
-    def __init__(self, navn: str, spesialangrep: str = "Flammehav"):
+    def __init__(self, navn: str, spesialangrep: str = "Flammehav")->None:
         super().__init__(navn)
         self.__spesialangrep = spesialangrep
 
-    def bruk_spesial(self):
+    def bruk_spesial(self)->int:
         skade = randint(5, 20)
         print(f"{self.navn} bruker {self.__spesialangrep}! Det gjør {skade} skade!")
         return skade
 
 
 class VannPokemon(Pokemon):
-    def __init__(self, navn: str, spesialangrep: str = "Vannkanon"):
+    def __init__(self, navn: str, spesialangrep: str = "Vannkanon")->None:
         super().__init__(navn)
         self.__spesialangrep = spesialangrep
 
-    def bruk_spesial(self):
+    def bruk_spesial(self)->int:
         skade = randint(10, 15)
         print(f"{self.navn} bruker {self.__spesialangrep}! Det gjør {skade} HP skade!")
         return skade

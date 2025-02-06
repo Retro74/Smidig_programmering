@@ -1,5 +1,5 @@
 class Vapen:
-    def __init__(self, navn:str, skade:int = 10, ammunisjon:int = 5):
+    def __init__(self, navn:str, skade:int = 10, ammunisjon:int = 5)->None:
         """Klasse for et våpen
 
         Args:
@@ -10,7 +10,7 @@ class Vapen:
         self.__navn = navn
         self.__skade = skade
         self.__ammunisjon = ammunisjon
-    def skyt(self):
+    def skyt(self)-> str:
         """Avfyrer våpenet 
         Reduserer ammunisjon med 1 til tomt 
 
@@ -22,7 +22,7 @@ class Vapen:
             return "Bang!"
         else:
             return "Klikk!"
-    def ladd_opp(self):
+    def ladd_opp(self)-> None:
         """Lader opp, setter ammuniasjon tilbake til 5
         """
         self.__ammunisjon =5
