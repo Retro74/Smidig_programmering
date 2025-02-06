@@ -1,4 +1,4 @@
-import random as rnd
+from random import randint
 
 class Pokemon:
     def __init__(self, navn: str):
@@ -18,11 +18,9 @@ class IldPokemon(Pokemon):
         self.__spesialangrep = spesialangrep
 
     def bruk_spesial(self):
-        skade = rnd.randint(5, 20)
+        skade = randint(5, 20)
         print(f"{self.navn} bruker {self.__spesialangrep}! Det gjør {skade} skade!")
         return skade
-    def er_sol(self,vaer):
-        return vaer == "sol"
 
 
 class VannPokemon(Pokemon):
@@ -31,11 +29,9 @@ class VannPokemon(Pokemon):
         self.__spesialangrep = spesialangrep
 
     def bruk_spesial(self):
-        skade = rnd.randint(10, 15)
+        skade = randint(10, 15)
         print(f"{self.navn} bruker {self.__spesialangrep}! Det gjør {skade} HP skade!")
         return skade
-    def er_regn(self,vaer):
-       return vaer == "regn"
 
 
 # Opprett Pokémon
