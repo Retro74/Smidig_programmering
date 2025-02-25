@@ -19,11 +19,11 @@ clock = pg.time.Clock()
 fortsett = True
 center_x =VINDU_BREDDE/2
 center_y=VINDU_HOYDE/2
-sekundviser_lengde = 100
+sekundviser_lengde = 220
 sekundviser_tykkelse = 1
-minuttviser_lengde = 100
+minuttviser_lengde = 220
 minuttviser_tykkelse = 3
-timeviser_lengde = 100
+timeviser_lengde = 120
 timeviser_tykkelse = 8
 
 while fortsett:

@@ -1,6 +1,8 @@
 import pygame as pg
 # Initialiserer/starter pygame
 import pygame.transform
+from pathlib import Path
+pyFilePath = Path(__file__).resolve().parent
 
 pg.init()
 
@@ -11,9 +13,10 @@ vindu = pg.display.set_mode([VINDU_BREDDE, VINDU_HOYDE])
 
 # Angir hvilken skrifttype og tekststørrelse vi vil bruke på tekst
 font = pg.font.SysFont("Arial", 24)
-redCar = pg.image.load("car.png").convert_alpha()
+
+redCar = pg.image.load(pyFilePath.joinpath("car.png")).convert_alpha()
 redCar = pg.transform.scale(redCar, (125,50))
-tree = pg.image.load("tree.png").convert_alpha()
+tree = pg.image.load(pyFilePath.joinpath("tree.png")).convert_alpha()
 tree = pg.transform.scale(tree, (125,120))
 
 redCar_y = 300
