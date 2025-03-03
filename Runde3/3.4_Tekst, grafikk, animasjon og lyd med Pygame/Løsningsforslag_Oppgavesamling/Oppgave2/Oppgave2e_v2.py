@@ -15,27 +15,28 @@ clock = pg.time.Clock()
 radius=200
 #################### /INIT ########################
 fortsett = True
-kuler=1
+kuler=100
 stigende=True
+start = 0
 while fortsett:
-    clock.tick(120)
+    clock.tick(60)
     # Sjekker om brukeren har lukket vinduet
     for event in pg.event.get():
         if event.type == pg.QUIT:
             fortsett = False
 
 #################### Spillogikk ########################
-    for i in range(kuler%256):
-        pos_x = math.cos(i*math.pi*2/255)*radius + VINDU_BREDDE/2
-        pos_y = math.sin(i*math.pi*2/255)*radius + VINDU_HOYDE/2
-        if stigende:
-            pg.draw.circle(vindu, (0, i, 0), (pos_x, pos_y), 8)
-        else:
-            pg.draw.circle(vindu, (0, 255-i, 0), (pos_x, pos_y), 8)
-    kuler+=1
+    for i in range(256):
+        pos_x = math.cos((start+i)*math.pi*2/255)*radius + VINDU_BREDDE/2
+        pos_y = math.sin((start+i)*math.pi*2/255)*radius + VINDU_HOYDE/2
+        pg.draw.circle(vindu, (0, i, 0), (pos_x, pos_y), 8)
+        start +=0.005
+        if start == 360:
+            start = 0
 
-    if kuler%256==0:
-        stigende = not stigende
+    
+
+
 
 #################### /Spillogikk ########################
     # Oppdaterer alt innholdet i vinduet
