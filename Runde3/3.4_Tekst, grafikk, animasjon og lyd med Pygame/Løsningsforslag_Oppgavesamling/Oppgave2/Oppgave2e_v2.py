@@ -17,7 +17,7 @@ radius=200
 fortsett = True
 kuler=100
 stigende=True
-start = 0
+offset = 0
 while fortsett:
     clock.tick(60)
     # Sjekker om brukeren har lukket vinduet
@@ -26,14 +26,13 @@ while fortsett:
             fortsett = False
 
 #################### Spillogikk ########################
-    for i in range(256):
-        pos_x = math.cos((start+i)*math.pi*2/255)*radius + VINDU_BREDDE/2
-        pos_y = math.sin((start+i)*math.pi*2/255)*radius + VINDU_HOYDE/2
+    for i in range(255):
+        pos_x = math.cos(math.radians(offset+i))*radius + VINDU_BREDDE/2
+        pos_y = math.sin(math.radians(offset+i))*radius + VINDU_HOYDE/2
+        ## Walk-around for lysende pixler som henger igjen etter passering
         pg.draw.circle(vindu, (0, i, 0), (pos_x, pos_y), 8)
-        start +=0.005
-        if start == 360:
-            start = 0
-
+        
+        offset +=0.01
     
 
 
