@@ -5,6 +5,7 @@ pg.init()
 # Oppretter et vindu der vi skal "tegne" innholdet vårt
 VINDU_BREDDE = 500
 VINDU_HOYDE  = 500
+FPS = 60
 vindu = pg.display.set_mode([VINDU_BREDDE, VINDU_HOYDE])
 
 # Angir hvilken skrifttype og tekststørrelse vi vil bruke på tekst
@@ -19,7 +20,7 @@ kuler=100
 stigende=True
 offset = 0
 while fortsett:
-    clock.tick(60)
+    clock.tick(FPS)
     # Sjekker om brukeren har lukket vinduet
     for event in pg.event.get():
         if event.type == pg.QUIT:
