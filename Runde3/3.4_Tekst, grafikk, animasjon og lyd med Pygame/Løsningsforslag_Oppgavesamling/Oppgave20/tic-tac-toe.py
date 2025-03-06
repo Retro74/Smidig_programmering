@@ -8,7 +8,7 @@ WIDTH, HEIGHT = 300, 300 # Bør være like
 GRID_SIZE = 3 # Definerer høyde og bredde
 
 CELL_SIZE = WIDTH // GRID_SIZE 
-BGCOLOR = (0, 255, 255)
+BGCOLOR = (255, 255, 255)
 LINE_COLOR = (0, 0, 0)
 
 # Initialiser Pygame
