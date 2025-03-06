@@ -24,8 +24,9 @@ O_IMG = pygame.transform.scale(O_IMG, (CELL_SIZE, CELL_SIZE))
 
 class Cell:
     def __init__(self, row:int, col:int):
-        """Celle på spillbrettet
-        
+        """ Celle på spillbrettet
+            Er avhengig av de globale variablene CELL_SIZE:int, X_IMG:pygame.image og O_IMG:pygame.image
+
         Args:
             row (int): cellens rad-plassering
             col (int): cellens kolonne-plassering
@@ -61,7 +62,8 @@ class Cell:
 
 class Board:
     def __init__(self):
-        """Board som er spillbrettet
+        """ Board som er spillbrettet
+            Klassen er avhengig av de globale variablene CELL_SIZE:int, GRID_SIZE:int, BGCOLOR:tuple, LINE_COLOR:tuple, WIDTH:int og HEIGHT:int
         """
         #Oppretter listen med 3 lister (rader) av 3 Celler i hver kolonne
         self.cells=[] #Først en tom liste
