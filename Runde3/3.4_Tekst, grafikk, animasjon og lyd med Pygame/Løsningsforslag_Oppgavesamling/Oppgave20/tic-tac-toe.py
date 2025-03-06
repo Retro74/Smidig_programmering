@@ -8,7 +8,7 @@ WIDTH, HEIGHT = 300, 300 # Bør være like
 GRID_SIZE = 3 # Definerer høyde og bredde
 
 CELL_SIZE = WIDTH // GRID_SIZE 
-BGCOLOR = (255, 255, 255)
+BGCOLOR = (0, 255, 255)
 LINE_COLOR = (0, 0, 0)
 
 # Initialiser Pygame
@@ -17,8 +17,8 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Tic-Tac-Toe")
 
 # Laster inn bilder og skalerer dem til celle-størrelse
-X_IMG = pygame.image.load(pyFilePath.joinpath("images").joinpath("x.png"))
-O_IMG = pygame.image.load(pyFilePath.joinpath("images").joinpath("o.png"))
+X_IMG = pygame.image.load(pyFilePath.joinpath("images").joinpath("x.png")).convert_alpha()
+O_IMG = pygame.image.load(pyFilePath.joinpath("images").joinpath("o.png")).convert_alpha()
 X_IMG = pygame.transform.scale(X_IMG, (CELL_SIZE, CELL_SIZE))
 O_IMG = pygame.transform.scale(O_IMG, (CELL_SIZE, CELL_SIZE))
 
