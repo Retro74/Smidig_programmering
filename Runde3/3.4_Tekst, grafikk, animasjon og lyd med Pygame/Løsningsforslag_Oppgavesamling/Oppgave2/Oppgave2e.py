@@ -13,10 +13,10 @@ font = pg.font.SysFont("Arial", 24)
 
 #################### INIT ########################
 clock = pg.time.Clock()
-radius=200
+radius=200 #Radius til sirkelen
 #################### /INIT ########################
 fortsett = True
-kuler=100
+kuler=255 #Maks 255 siden denne også brukes til farge
 stigende=True
 offset = 0
 while fortsett:
@@ -27,12 +27,12 @@ while fortsett:
             fortsett = False
 
 #################### Spillogikk ########################
-    for i in range(255):
+    for i in range(kuler):
         pos_x = math.cos(math.radians(offset+i))*radius + VINDU_BREDDE/2
         pos_y = math.sin(math.radians(offset+i))*radius + VINDU_HOYDE/2
-        pg.draw.circle(vindu, (0, i, 0), (pos_x, pos_y), 8)
+        pg.draw.circle(vindu, (0, i, 0), (pos_x, pos_y), 8) #Tegn en prikkpå stedet gitt av pos_x og pos_y
         
-        offset +=0.01
+    offset +=3
     
 
 

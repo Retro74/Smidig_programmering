@@ -1,39 +1,40 @@
 import math
 import pygame
+from pathlib import Path
+pyFilePath = Path(__file__).resolve().parent
 
 class Tank:
     def __init__(self, x, y, size=1):
-        self.tank_image = pygame.image.load("tank.png") # bilde av tanken
-        self.turret_image = pygame.image.load("turret.png") # bilde av kanontårnet
-        self.turret_offset = (25, 25) # offset for å plassere kanontårnet på riktig sted
+        #print("Tank made")
+        self.tank_image = pygame.image.load(pyFilePath.joinpath("tank.png")) # bilde av tanken
+        self.turret_image = pygame.image.load(pyFilePath.joinpath("turret.png")) # bilde av kanontårnet
         self.rect = self.tank_image.get_rect() # rektangel rundt bilde av tanken
         self.rect.x = x
         self.rect.y = y
-        self.speed = 5 # fart i piksler per frame
-        self.angle_speed = 5 # vinkelhastighet i grader per frame
+        self.speed = 3 # fart i piksler per frame
+        self.angle_speed = 2 # vinkelhastighet i grader per frame
         self.angle = 0 # startvinkel for tanks
         self.turret_angle = 0 # startvinkel for kanontårnet
         self.size = size # størrelse på tanken
 
     def move(self, keys):
         if keys[pygame.K_w]:
-            self.rect.y -= self.speed * math.cos(self.angle*math.pi/180)
-            self.rect.x -= self.speed * math.sin(self.angle*math.pi/180)
+            self.rect.x -= self.speed * math.sin(math.radians(self.angle))
+            self.rect.y -= self.speed * math.cos(math.radians(self.angle))
 
         elif keys[pygame.K_s]:
-            self.rect.y += self.speed * math.cos(self.angle*math.pi/180)
-            self.rect.x += self.speed * math.sin(self.angle*math.pi/180)
+            self.rect.x += self.speed * math.sin(math.radians(self.angle))
+            self.rect.y += self.speed * math.cos(math.radians(self.angle))
+
         if keys[pygame.K_a]:
             self.angle += self.angle_speed
         elif keys[pygame.K_d]:
             self.angle -= self.angle_speed
 
-        # begrens vinkelen til et område mellom -180 og 180 grader
+        # begrens vinkelen til et område mellom 0 og 360 grader
         self.angle %= 360
-        if self.angle > 180:
-            self.angle -= 360
-        elif self.angle < -180:
-            self.angle += 360
+        #print(self.angle)
+
 
     def rotate_turret(self, keys):
         if keys[pygame.K_LEFT]:
@@ -49,12 +50,10 @@ class Tank:
             self.turret_angle += 360
 
         # roter bilde av kanontårnet rundt midten
-        old_center = self.rect.center
-        turret_center = (self.rect.x + self.turret_offset[0], self.rect.y + self.turret_offset[1])
-        self.turret_image = pygame.transform.rotate(pygame.image.load("turret.png"), self.angle)
+        turret_center = (self.rect.x, self.rect.y)
+        self.turret_image = pygame.transform.rotate(pygame.image.load(pyFilePath.joinpath("turret.png")), self.angle)
         self.rect = self.tank_image.get_rect()
-        self.rect.center = old_center
-        self.rect.x, self.rect.y = turret_center[0] - self.turret_offset[0], turret_center[1] - self.turret_offset[1]
+        self.rect.x, self.rect.y = turret_center[0], turret_center[1]
 
     def draw(self, screen):
         tank_size = (int(self.rect.width * self.size), int(self.rect.height * self.size))
@@ -71,3 +70,5 @@ class Tank:
         # tegn bilde av tanken og kanontårnet på skjermen
         screen.blit(rotated_tank, tank_rect)
         screen.blit(rotated_turret, turret_rect)
+        #print("tegner Tank her ", tank_rect)
+

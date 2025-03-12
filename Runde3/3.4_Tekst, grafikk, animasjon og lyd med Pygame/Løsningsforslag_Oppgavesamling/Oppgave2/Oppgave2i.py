@@ -1,22 +1,10 @@
 import pygame as pg
 import datetime
 import math
-# Initialiserer/starter pygame
-pg.init()
-# Oppretter et vindu der vi skal "tegne" innholdet vårt
+
+#Variabler 
 VINDU_BREDDE = 500
 VINDU_HOYDE  = 500
-vindu = pg.display.set_mode([VINDU_BREDDE, VINDU_HOYDE])
-pg.display.set_caption("Klokke")
-
-# Angir hvilken skrifttype og tekststørrelse vi vil bruke på tekst
-font = pg.font.SysFont("Arial", 24)
-
-#################### INIT ########################
-clock = pg.time.Clock()
-
-#################### /INIT ########################
-fortsett = True
 center_x =VINDU_BREDDE/2
 center_y=VINDU_HOYDE/2
 sekundviser_lengde = 220
@@ -25,6 +13,19 @@ minuttviser_lengde = 220
 minuttviser_tykkelse = 3
 timeviser_lengde = 120
 timeviser_tykkelse = 8
+clock = pg.time.Clock()
+
+
+
+#################### INIT ########################
+# Initialiserer/starter pygame
+pg.init()
+# Oppretter et vindu der vi skal "tegne" innholdet vårt
+vindu = pg.display.set_mode([VINDU_BREDDE, VINDU_HOYDE])
+pg.display.set_caption("Klokke")
+
+#################### /INIT ########################
+fortsett = True
 
 while fortsett:
     clock.tick(1)
@@ -35,6 +36,7 @@ while fortsett:
             fortsett = False
 
 #################### Spillogikk ########################
+    #Henter inn tide nå og plukker ut tiden, time, minutt og sekund
     now = datetime.datetime.now()
     tid = now.time()
     time = tid.hour

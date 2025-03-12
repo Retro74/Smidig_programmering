@@ -1,20 +1,22 @@
 import pygame as pg
 import math
-# Initialiserer/starter pygame
-pg.init()
-# Oppretter et vindu der vi skal "tegne" innholdet vårt
+
+# Variabler i spillet
 VINDU_BREDDE = 600
 VINDU_HOYDE  = 600
-vindu = pg.display.set_mode([VINDU_BREDDE, VINDU_HOYDE])
-
-# Angir hvilken skrifttype og tekststørrelse vi vil bruke på tekst
-font = pg.font.SysFont("Arial", 24)
-
-#################### INIT ########################
 clock = pg.time.Clock()
 center_x, center_y = VINDU_BREDDE // 2, VINDU_HOYDE // 2
 radius = 250
+
+
+
+#################### INIT ########################
+# Initialiserer/starter pygame
+pg.init()
+# Oppretter et vindu der vi skal "tegne" innholdet vårt
+vindu = pg.display.set_mode([VINDU_BREDDE, VINDU_HOYDE])
 vindu.fill((255, 255, 255))
+
 # Tegner en gradert kule ved hjelp av sirkeler i ulike farger
 for i in range(radius):
     farge = (i, i, i) #Grå
@@ -37,6 +39,7 @@ while fortsett:
             fortsett = False
 
 #################### Spillogikk ########################
+# Denne oppgaven har ingen utvikling/animasjon
 
 #################### /Spillogikk ########################
 

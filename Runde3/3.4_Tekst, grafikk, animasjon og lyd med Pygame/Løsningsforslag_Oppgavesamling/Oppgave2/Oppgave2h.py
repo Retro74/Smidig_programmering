@@ -2,20 +2,18 @@ import pygame as pg
 from tkinter import *
 from tkinter import simpledialog
 
-# Initialiserer/starter pygame
-pg.init()
-# Oppretter et vindu der vi skal "tegne" innholdet vårt
 VINDU_BREDDE = 500
 VINDU_HOYDE  = 500
-vindu = pg.display.set_mode([VINDU_BREDDE, VINDU_HOYDE])
-
-# Angir hvilken skrifttype og tekststørrelse vi vil bruke på tekst
-font = pg.font.SysFont("Arial", 24)
-
-#################### INIT ########################
 tegne_radius = 3
 farger = {"r":(255,0,0), "b":(0,0,255), "g":(0,255,0), "y":(255,255,0), "t":(0,255,255), "p":(255,0,255), "d":(0,0,0)}
 valgtFarge = farger["b"]
+
+#################### INIT ########################
+# Initialiserer/starter pygame
+pg.init()
+# Oppretter et vindu der vi skal "tegne" innholdet vårt
+vindu = pg.display.set_mode([VINDU_BREDDE, VINDU_HOYDE])
+
 vindu.fill((255,255,255))
 #################### /INIT ########################
 fortsett = True
