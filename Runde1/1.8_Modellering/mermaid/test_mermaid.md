@@ -7,7 +7,7 @@ classDiagram
         - string beskrivelse
         - int aktivSangIndex
         - bool gjenta
-        ---
+        
         + int antallSanger()
         + int totalSpilletid()
         + leggTilSang(Sang sang)
@@ -26,9 +26,9 @@ classDiagram
         - int spilletid // i sekunder
         - string album
         - string filSti
-        ---
+        
         + getDetaljer()
         + spill()
     }
 
-    Spilleliste "1" --> "*" Sang : inneholder
+    Spilleliste "1" o-- "*" Sang : inneholder
