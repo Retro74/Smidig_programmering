@@ -30,6 +30,14 @@ BackIMG = pyFilePath.joinpath("images").joinpath("back.png")
 
 class Card:
     def __init__(self,front_image: str, back_image: str, row:int, col:int):
+        """Card er klassen for et memory-spill-kort. Kortet brukes som en del av klassen MemmoryGame
+
+        Args:
+            front_image (str): Sti til bildet for kortets for-/bildeside
+            back_image (str): Sti til bildet for kortets bakside
+            row (int): Kortets rad-plassering på spillbrettet
+            col (int): Kortets kolonne-plassering på spillbrettet
+        """
         self._row = row
         self._col = col
         self._front_image = front_image
@@ -38,9 +46,19 @@ class Card:
         self.is_flipped = False
     
     def get_front_image(self):
+        """Henter den private verdien self._front_image 
+
+        Returns:
+            str: self._front_image
+        """
         return self._front_image
     
     def draw(self, surface):
+        """Bliter inn kortet (med forside eller bakside) inn på spillbrettet, på sin plass
+
+        Args:
+            surface (pygame.display): pyGame's spill-vindu
+        """
         if self.is_matched or self.is_flipped:
             show_image = self._front_image
         else:
