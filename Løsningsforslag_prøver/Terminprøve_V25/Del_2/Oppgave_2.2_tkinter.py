@@ -54,8 +54,14 @@ class Card:
         else:
             self.button.config(image=self.phIm_back_image)
 
-class MemoryGame:    
+class MemoryGame:
     def __init__(self, root, pyFilePath):
+        """Lager objektet MemoyGame
+
+        Args:
+            root (tk.Tk): tkinter-vinduet spillet skal plasseres i
+            pyFilePath (str): stien til hvor dette spillet ligger
+        """
         self.root = root
         self.root.title("Memory-spill")
         self.cards = []
@@ -64,13 +70,19 @@ class MemoryGame:
         self.click_sequence = 0
 
     def load_cards(self, pyFilePath):
+        """Laster inn kortene i spillet, stokker dem og legger dem på spillbrettet
+
+        Args:
+            pyFilePath (str): hvor spillet ligger
+        """
+        ##Bildene legges inn
         images =[]
         for i in range(1,int(COLS*ROWS/2+1)):
             images.append(f"{pyFilePath.joinpath('images').joinpath(str(i))}.gif")
             images.append(f"{pyFilePath.joinpath('images').joinpath(str(i))}.gif")
         random.shuffle(images)  # Stokk kortene
         back_image =pyFilePath.joinpath('images').joinpath("back.gif")
-        # Opprett kortene i et 5x4-rutenett
+        # Opprett kortene i et rutenett og legg dem på spillbrettet/vinduet
         for row in range(COLS):
             for col in range(ROWS):
                 front_image = images.pop()
