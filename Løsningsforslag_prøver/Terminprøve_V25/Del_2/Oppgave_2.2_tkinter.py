@@ -20,7 +20,7 @@ class Card:
 
         # Opprett en knapp som viser kortet
         self.button = ttk.Button(root, image=self.phIm_back_image, command=self.flip, width=10)
-        self.button.grid(row=row, column=col, padx=5, pady=5)
+        self.button.grid(row=row, column=col, padx=0, pady=0)
 
     def flip(self):
         #global click_sequence, previous_card
